@@ -2,15 +2,8 @@ const { browser } = require('@wdio/globals');
 const moment = require('moment-timezone');
 const { execSync } = require('child_process');
 
-/**
-* main page object containing all methods, selectors and functionality
-* that is shared across all page objects
-*/
 module.exports = class Page {
-    /**
-    * Opens a sub page of the page
-    * @param path path of the sub page (e.g. /path/to/page.html)
-    */
+
     open (path) {
         return browser.url(`https://the-internet.herokuapp.com/${path}`)
     }
@@ -75,25 +68,22 @@ module.exports = class Page {
         return $('android=new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(elem)');
     }
 
-
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to wait for element to be displayed before clicking
-     */
     async clickDisplayedElem (elem) {
         await elem.waitForDisplayed();
         await elem.click();
     }
 
-    async toggleAirplaneMode () {
-        await driver.toggleAirplaneMode();
-    }
+    // async toggleAirplaneMode () {
+    //     execSync("adb shell cmd connectivity airplane-mode enable", { stdio: 'inherit' });
+    //     // await driver.toggleAirplaneMode();
+    // }
 
-    async airplaneModeOff () {
+    async toggleAirplaneMode (state) {
         driver.getNetworkConnection().then(nConnect => {
-            if (nConnect == 1) {
-                driver.toggleAirplaneMode();
-                browser.pause(3000);
+            if (nConnect == 1 && state == 'off') {
+                execSync("adb shell cmd connectivity airplane-mode disable", { stdio: 'inherit' });
+            }else if (nConnect == 6 && state == 'on') {
+                execSync("adb shell cmd connectivity airplane-mode enable", { stdio: 'inherit' });
             }
         });
     }
@@ -106,7 +96,7 @@ module.exports = class Page {
 
     async syncData () {
         console.log(`TIME IS::: ${await driver.getDeviceTime()}`);
-        //change date here
+        //change date here - WIP
         await browser.pause(5000);
         await this.tabDropdown.click();
         await this.clickDisplayedElem(this.menuItemSyncNow);
@@ -129,7 +119,7 @@ module.exports = class Page {
 
         return {year, month, day, hour, minute};
     }
-
+x
     async updateCurrentDate (days) {
         const extractCurrentDate = await this.extractCurrentDate(days);
         console.log('TIME::: Year:', extractCurrentDate.year);

@@ -1,13 +1,8 @@
 const { $ } = require('@wdio/globals')
 const Page = require('./page');
 
-/**
- * sub page containing specific selectors and methods for a specific page
- */
 class PeoplePage extends Page {
-    /**
-     * define selectors using getter methods
-     */
+   
     get btnSearch() {
         return $('//*[@text="Performance"]');
     }
@@ -176,41 +171,15 @@ class PeoplePage extends Page {
         return $('//*[contains(@text, "CHVArea")]');
     }
 
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to create a new person 
-     */
-    // async createPerson (firstName, middleName, lastName, ageYears, ageMonths) {
-    //     await super.tabPeople.waitForDisplayed();
-    //     await super.tabPeople.click();
-    //     await this.firstHousehold.waitForDisplayed();
-    //     await this.firstHousehold.click();
-    //     await this.btnAdd.click();
-    //     // await this.WidgetNewPerson.click()
-    //     await this.inputFirstName.setValue(firstName);
-    //     await this.inputMiddleName.setValue(middleName);
-    //     await this.inputLastName.setValue(lastName);
-    //     await this.radioMale.click();
-    //     await this.radioDobWithAge.click();
-    //     await this.radioAgeYears.setValue(ageYears);
-    //     await this.radioAgeMonths.setValue(ageMonths)
-    //     await this.radioKenyanYes.click();
-    //     await this.btnSubmit.click();
-    // }
-
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to create a new person 
-     */
     async createPerson (firstName, middleName, lastName, ageYears, ageMonths) {
         await super.tabPeople.waitForDisplayed();
-        await super.toggleAirplaneMode();
+        await super.toggleAirplaneMode('on');
         await super.tabPeople.click();
         await this.clickDisplayedElem(this.firstHousehold);
         await this.btnAdd.click();
-        // await this.textNewPerson.click()
+        await this.textNewPerson.click()
         await this.inputFirstName.setValue(firstName);
-        // await this.inputMiddleName.setValue(middleName);
+        await this.inputMiddleName.setValue(middleName);
         await this.inputLastName.setValue(lastName);
         await this.radioMale.click();
         
@@ -242,38 +211,33 @@ class PeoplePage extends Page {
         await this.radioDisabilityNo.click();
         await this.radioIllnessNo.click();
         await browser.pause(10000);
-        // await this.btnSubmit.click();
+        await this.btnSubmit.click();
     }
     
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to view a person in a household
-     */
     async viewPerson () {
         await super.tabPeople.waitForDisplayed();
-        await super.toggleAirplaneMode();
+        await super.toggleAirplaneMode('on');
         await super.tabPeople.click();
         await super.clickDisplayedElem(this.firstHousehold);
         await this.householdPerson.click();
         await this.iconBack.click();
     }
 
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to view the CHV's Area 
-     */
+    async viewPerson2 () {
+        await super.tabPeople.waitForDisplayed();
+        await super.toggleAirplaneMode('off');
+        await super.tabPeople.click();
+        await super.clickDisplayedElem(this.firstHousehold);
+        await this.householdPerson.click();
+        await this.iconBack.click();
+    }
+
     async viewCHPArea () {
         await super.clickDisplayedElem(super.tabPeople);
         await super.clickDisplayedElem(this.textCHVArea);
         await this.iconBack.click();
     }
 
-    /**
-     * overwrite specific options to adapt it to page object - to be used for mobile web
-     */
-    open () {
-        return super.open('people');
-    }
 }
 
 module.exports = new PeoplePage();
