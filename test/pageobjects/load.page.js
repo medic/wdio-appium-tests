@@ -12,7 +12,7 @@ class LoadPage extends Page {
     }
 
     async loadInstance (url) {
-        await super.toggleAirplaneMode('off');
+        await super.toggleAirplaneMode('off')
         await super.btnCustom.click();
         await this.inputInstanceUrl.setValue(url);
         await this.btnSave.click();

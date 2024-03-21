@@ -58,10 +58,11 @@ exports.config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
+
     capabilities: [{
         'appium:platformName': 'Android',
-        'appium:platformVersion': '13.0',
-        'appium:deviceName': 'Pixel_4',
+        'appium:platformVersion': process.env.SAFARICOM_VERSION,
+        'appium:deviceName': process.env.SAFARICOM_NAME,
         'appium:autoGrantPermissions': true,
         'appium:allowInvisibleElements': true,
         'appium:appPackage': 'org.medicmobile.webapp.mobile',
@@ -69,6 +70,7 @@ exports.config = {
         'appium:app': 'apk/CHTAndroid.apk',
         'appium:automationName': 'UiAutomator2'
     }],
+
     //
     // ===================
     // Test Configurations

@@ -10,6 +10,7 @@ class PerformancePage extends Page {
     async viewPerformance () {
         await super.clickDisplayedElem(super.tabPerformance);
         await this.iconMenu.click();
+        await browser.pause(5000);
     }
 
     async relaunchApp () {

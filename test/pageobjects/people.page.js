@@ -221,23 +221,15 @@ class PeoplePage extends Page {
         await super.clickDisplayedElem(this.firstHousehold);
         await this.householdPerson.click();
         await this.iconBack.click();
-    }
-
-    async viewPerson2 () {
-        await super.tabPeople.waitForDisplayed();
-        await super.toggleAirplaneMode('off');
-        await super.tabPeople.click();
-        await super.clickDisplayedElem(this.firstHousehold);
-        await this.householdPerson.click();
-        await this.iconBack.click();
+        await browser.pause(5000);
     }
 
     async viewCHPArea () {
         await super.clickDisplayedElem(super.tabPeople);
         await super.clickDisplayedElem(this.textCHVArea);
         await this.iconBack.click();
+        await browser.pause(5000);
     }
-
 }
 
 module.exports = new PeoplePage();
