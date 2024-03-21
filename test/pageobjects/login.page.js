@@ -22,9 +22,6 @@ class LoginPage extends Page {
         await this.btnLogin.click();
     }
 
-    open () {
-        return super.open('login');
-    }
 }
 
 module.exports = new LoginPage();

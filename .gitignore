@@ -1,2 +1,5 @@
 .DS_Store
 package-lock.json
+.env
+allure-results
+node_modules

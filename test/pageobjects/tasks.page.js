@@ -15,6 +15,7 @@ class TasksPage extends Page {
         await super.clickDisplayedElem(super.tabTasks);
         await super.clickDisplayedElem(this.iconCommodity);
         await this.iconClose.click();
+        await browser.pause(5000);
     }
 }
 
