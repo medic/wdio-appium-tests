@@ -4,10 +4,6 @@ const { execSync } = require('child_process');
 
 module.exports = class Page {
 
-    open (path) {
-        return browser.url(`https://the-internet.herokuapp.com/${path}`)
-    }
-
     get btnCustom() {
         return $('//*[@text="Custom"]');
     }
@@ -71,19 +67,15 @@ module.exports = class Page {
     async clickDisplayedElem (elem) {
         await elem.waitForDisplayed();
         await elem.click();
+        await browser.pause(5000);
     }
-
-    // async toggleAirplaneMode () {
-    //     execSync("adb shell cmd connectivity airplane-mode enable", { stdio: 'inherit' });
-    //     // await driver.toggleAirplaneMode();
-    // }
 
     async toggleAirplaneMode (state) {
         driver.getNetworkConnection().then(nConnect => {
             if (nConnect == 1 && state == 'off') {
-                execSync("adb shell cmd connectivity airplane-mode disable", { stdio: 'inherit' });
+                execSync('adb shell cmd connectivity airplane-mode disable', { stdio: 'inherit' });
             }else if (nConnect == 6 && state == 'on') {
-                execSync("adb shell cmd connectivity airplane-mode enable", { stdio: 'inherit' });
+                execSync('adb shell cmd connectivity airplane-mode enable', { stdio: 'inherit' });
             }
         });
     }
@@ -92,6 +84,7 @@ module.exports = class Page {
         await driver.execute('mobile: terminateApp', {appId: 'org.medicmobile.webapp.mobile'});
         await browser.pause(5000);
         await driver.execute('mobile: activateApp', {appId: 'org.medicmobile.webapp.mobile'});
+        await browser.pause(5000);
     }
 
     async syncData () {
@@ -106,16 +99,16 @@ module.exports = class Page {
 
     async extractCurrentDate(days) {
         const dateTimeString = await driver.getDeviceTime();
-        var dateTime = moment(dateTimeString);
+        let dateTime = moment(dateTimeString);
         if (days > 0) {
             dateTime = moment(dateTime).add(days, 'days');
         }
 
-        const year = dateTime.year();
-        const month = dateTime.month() + 1;
-        const day = dateTime.date();
-        const hour = dateTime.hour();
-        const minute = dateTime.minute();
+        const year = dateTime.format('YY');
+        const month = dateTime.format('MM');
+        const day = dateTime.format('DD');
+        const hour = dateTime.format('HH');
+        const minute = dateTime.format('mm');
 
         return {year, month, day, hour, minute};
     }
@@ -128,11 +121,9 @@ x
         console.log('TIME::: Hour:', extractCurrentDate.hour);
         console.log('TIME::: Minute:', extractCurrentDate.minute);
         console.log('TIME::: Extracted Components:', extractCurrentDate);
-        const dateFormat = `date +"%${extractCurrentDate.month}%${extractCurrentDate.day}%${extractCurrentDate.hour}%${extractCurrentDate.minute}%${extractCurrentDate.year}"`;
-        console.log('TIME::: Command is:', "adb -e shell su root date " + "`"  + dateFormat + "`");
-        execSync("adb -e shell su root date " + "`"  + dateFormat + "`", { stdio: 'inherit' });
-        // driver.executeScript('mobile: shell', {});
-        browser.pause(20000);
+        const ardDateFormat = `${extractCurrentDate.month}${extractCurrentDate.day}${extractCurrentDate.hour}${extractCurrentDate.minute}${extractCurrentDate.year}`;
+        console.log('TIME::: Command is:', 'adb -e shell su root date ' + '`'  + ardDateFormat + '`');
+        execSync('adb shell su root date ' + ardDateFormat, { stdio: 'inherit' });
+        browser.pause(10000);
     }
-
 }

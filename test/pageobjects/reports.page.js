@@ -15,6 +15,7 @@ class ReportsPage extends Page {
         await super.clickDisplayedElem(super.tabReports);
         await super.clickDisplayedElem(this.iconHealthCare);
         await this.iconBack.click();
+        await browser.pause(5000);
     }
 }
 
