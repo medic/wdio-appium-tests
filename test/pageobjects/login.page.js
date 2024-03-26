@@ -1,29 +1,20 @@
 const { $ } = require('@wdio/globals')
 const Page = require('./page');
 
-/**
- * sub page containing specific selectors and methods for a specific page
- */
 class LoginPage extends Page {
-    /**
-     * define selectors using getter methods
-     */
+  
     get inputUsername () {
-        return $('//*[@resource-id="user"]');
+        return $('//android.view.View[1]/android.widget.EditText');
     }
 
     get inputPassword () {
-        return $('//*[@resource-id="password"]');
+        return $('//android.view.View[3]/android.widget.EditText');
     }
 
     get btnLogin () {
-        return $('//*[@resource-id="login"]');
+        return $('//*[@text="Login"]');
     }
 
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to login using username and password
-     */
     async login (username, password) {
         await this.inputUsername.waitForDisplayed();
         await this.inputUsername.setValue(username);
@@ -31,12 +22,6 @@ class LoginPage extends Page {
         await this.btnLogin.click();
     }
 
-    /**
-     * overwrite specific options to adapt it to page object - to be used for mobile web
-     */
-    open () {
-        return super.open('login');
-    }
 }
 
 module.exports = new LoginPage();

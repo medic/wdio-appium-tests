@@ -58,65 +58,19 @@ exports.config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    // capabilities: [{
-    //     // capabilities for local Appium web tests on an Android Emulator
-    //     platformName: 'Android',
-    //     browserName: 'Chrome',
-    //     'appium:deviceName': 'Android GoogleAPI Emulator',
-    //     'appium:platformVersion': '12.0',
-    //     'appium:automationName': 'UiAutomator2'
-        //   'appium:appPackage': 'com.wdiodemoapp',
-        //   'appium:appActivity': 'com.wdiodemoapp.MainActivity'
-            // 'appium:app': 'apk/DemoApp.apk',
-    // }],
-    
-    // capabilities: [{
-    //       'appium:platformName': 'Android',
-    //       'appium:platformVersion': '13.0',
-    //       'appium:deviceName': 'Pixel_4',
-    //       'appium:udid': 'emulator-5554',
-    //       'appium:autoGrantPermissions': true,
-    //       'appium:appPackage': 'org.medicmobile.webapp.mobile',
-    //       'appium:appActivity': 'org.medicmobile.webapp.mobile.StartupActivity',
-    //       'appium:automationName': 'UiAutomator2'
-    //   }],
 
     capabilities: [{
         'appium:platformName': 'Android',
-        'appium:platformVersion': '9.0',
-        'appium:deviceName': 'samsung SM-G955U',
-        // 'appium:udid': 'emulator-5554',
+        'appium:platformVersion': process.env.SAMSUNG_VERSION,
+        'appium:deviceName': process.env.SAMSUNG_NAME,
         'appium:autoGrantPermissions': true,
+        'appium:allowInvisibleElements': true,
+        'appium:disableIdLocatorAutocompletion': true,
         'appium:appPackage': 'org.medicmobile.webapp.mobile',
         'appium:appActivity': 'org.medicmobile.webapp.mobile.StartupActivity',
-        // 'appium:app': 'apk/DemoApp.apk',
+        // 'appium:app': 'apk/CHTAndroid.apk',
         'appium:automationName': 'UiAutomator2'
     }],
-
-    // capabilities: [{
-    //     'appium:platformName': 'Android',
-    //     'appium:platformVersion': '11.0',
-    //     'appium:deviceName': 'pixel_5',
-    //     // 'appium:udid': 'emulator-5554',
-    //     'appium:autoGrantPermissions': true,
-    //     'appium:appPackage': 'org.medicmobile.webapp.mobile',
-    //     'appium:appActivity': 'org.medicmobile.webapp.mobile.StartupActivity',
-    //     // 'appium:app': 'apk/CHTAndroid.apk',
-    //     'appium:automationName': 'UiAutomator2'
-    // }],
-
-    // capabilities: [{
-    //     'appium:platformName': 'Android',
-    //     'appium:platformVersion': '13.0',
-    //     'appium:deviceName': 'Safaricom Neon Ray Ultra S',
-    //     // 'appium:udid': 'emulator-5554',
-    //     'appium:autoGrantPermissions': true,
-    //     'appium:appPackage': 'org.medicmobile.webapp.mobile',
-    //     'appium:appActivity': 'org.medicmobile.webapp.mobile.StartupActivity',
-    //     // 'appium:app': 'apk/CHTAndroid.apk',
-    //     'appium:automationName': 'UiAutomator2'
-    // }],
-
 
     //
     // ===================

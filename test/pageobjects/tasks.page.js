@@ -1,29 +1,38 @@
 const { $ } = require('@wdio/globals')
 const Page = require('./page');
 
-/**
- * sub page containing specific selectors and methods for a specific page
- */
 class TasksPage extends Page {
-    /**
-     * define selectors using getter methods
-     */
+    
     get iconCommodity () {
         return $('//*[@text="icon-commodity"]');
+    }
+
+    get iconPregnancy () {
+        return $('//*[@text="icon-pregnancy"]');
     }
 
     get iconClose () {
         return $('//*[@text="Close"]');
     }
 
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to view a task 
-     */
+    get btnYes () {
+        return $('//android.widget.Button[@text="Yes"]');
+    }
+
     async viewATask () {
         await super.clickDisplayedElem(super.tabTasks);
         await super.clickDisplayedElem(this.iconCommodity);
         await this.iconClose.click();
+        await this.iconCommodity.waitForDisplayed();
+    }
+
+    async viewATaskNE () {
+        await super.clickDisplayedElem(super.tabTasks);
+        await super.clickDisplayedElem(this.iconPregnancy);
+        await browser.pause(2000);
+        await this.iconClose.click();
+        await this.clickDisplayedElem(this.btnYes);
+        await this.iconPregnancy.waitForDisplayed();
     }
 }
 
