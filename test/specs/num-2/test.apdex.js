@@ -18,12 +18,6 @@ describe('Apdex Performance Workflows', () => {
         await LoginPage.login(username, password);
     })
 
-    // it('should sync the data', async () => {
-    //     await LoadPage.syncData();
-    //     await expect(LoadPage.menuTextSyncStatus).toHaveText("Currently syncing…");
-    //     browser.pause(5000);
-    // })z
-
     it('should view a person within the household', async () => {
         await PeoplePage.viewPerson();
     })
@@ -45,7 +39,6 @@ describe('Apdex Performance Workflows', () => {
     })
 
     it('should open the performance page and relaunch the app', async () => {
-        // await PerformancePage.viewPerformance();
         await PerformancePage.relaunchApp();
     })
 
@@ -72,7 +65,6 @@ describe('Apdex Performance Workflows', () => {
     })
 
     it('should open the performance page and relaunch the app-2', async () => {
-        // await PerformancePage.viewPerformance()
         await PerformancePage.relaunchApp()
     })
 
@@ -99,7 +91,6 @@ describe('Apdex Performance Workflows', () => {
     })
 
     it('should open the performance page and relaunch the app-3', async () => {
-        // await PerformancePage.viewPerformance()
         await PerformancePage.relaunchApp()
     })
 
@@ -125,8 +116,7 @@ describe('Apdex Performance Workflows', () => {
         await MessagesPage.viewAMessage()
     })
 
-    it('should open the performance page and relaunch the app-4', async () => {
-        // await PerformancePage.viewPerformance()
+    it('should open the performance page and relaunch the app-4', async () => { 
         await PerformancePage.relaunchApp()
     })
 
@@ -153,7 +143,6 @@ describe('Apdex Performance Workflows', () => {
     })
 
     it('should open the performance page and relaunch the app-5', async () => {
-        // await PerformancePage.viewPerformance()
         await PerformancePage.relaunchApp()
     })
 
@@ -179,8 +168,7 @@ describe('Apdex Performance Workflows', () => {
         await MessagesPage.viewAMessage()
     })
 
-    it('should open the performance page and relaunch the app-6', async () => {
-        // await PerformancePage.viewPerformance()
+    it('should open the performance page and relaunch the app-6', async () => { 
         await PerformancePage.relaunchApp()
     })
 
@@ -206,8 +194,7 @@ describe('Apdex Performance Workflows', () => {
         await MessagesPage.viewAMessage()
     })
 
-    it('should open the performance page and relaunch the app-7', async () => {
-        // await PerformancePage.viewPerformance()
+    it('should open the performance page and relaunch the app-7', async () => { 
         await PerformancePage.relaunchApp()
     })
 
@@ -233,8 +220,7 @@ describe('Apdex Performance Workflows', () => {
         await MessagesPage.viewAMessage()
     })
 
-    it('should open the performance page and relaunch the app-8', async () => {
-        // await PerformancePage.viewPerformance()
+    it('should open the performance page and relaunch the app-8', async () => { 
         await PerformancePage.relaunchApp()
     })
 
@@ -260,8 +246,7 @@ describe('Apdex Performance Workflows', () => {
         await MessagesPage.viewAMessage()
     })
 
-    it('should open the performance page and relaunch the app-9', async () => {
-        // await PerformancePage.viewPerformance()
+    it('should open the performance page and relaunch the app-9', async () => { 
         await PerformancePage.relaunchApp()
     })
 
@@ -288,7 +273,6 @@ describe('Apdex Performance Workflows', () => {
     })
 
     it('should open the performance page and relaunch the app-10', async () => {
-        // await PerformancePage.viewPerformance()
         await PerformancePage.relaunchApp()
     })
 
