@@ -7,8 +7,12 @@ class PeoplePage extends Page {
         return $('//*[@text="Performance"]');
     }
 
-    get firstHousehold () {
+    get firstHouseholdKE () {
         return $('(//android.widget.TextView[@text="visits"])[1]');
+    }
+
+    get firstHousehold () {
+        return $('(//android.view.View[@text="icon-family"])[1]');
     }
 
     get btnAdd () {
@@ -168,7 +172,7 @@ class PeoplePage extends Page {
     }
 
     get textCHVArea () {
-        return $('//*[contains(@text, "CHVArea")]');
+        return $('//*[contains(@text, "CHV")]');
     }
 
     async createPerson (firstName, middleName, lastName, ageYears, ageMonths) {
@@ -221,14 +225,15 @@ class PeoplePage extends Page {
         await super.clickDisplayedElem(this.firstHousehold);
         await this.householdPerson.click();
         await this.iconBack.click();
-        await browser.pause(5000);
+        await this.firstHousehold.waitForDisplayed();
     }
 
     async viewCHPArea () {
         await super.clickDisplayedElem(super.tabPeople);
         await super.clickDisplayedElem(this.textCHVArea);
+        await browser.pause(2000);
         await this.iconBack.click();
-        await browser.pause(5000);
+        await this.textCHVArea.waitForDisplayed();
     }
 }
 

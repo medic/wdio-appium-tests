@@ -67,7 +67,6 @@ module.exports = class Page {
     async clickDisplayedElem (elem) {
         await elem.waitForDisplayed();
         await elem.click();
-        await browser.pause(5000);
     }
 
     async toggleAirplaneMode (state) {
@@ -82,16 +81,15 @@ module.exports = class Page {
 
     async relaunchApp () {
         await driver.execute('mobile: terminateApp', {appId: 'org.medicmobile.webapp.mobile'});
-        await browser.pause(5000);
+        await browser.pause(2000);
         await driver.execute('mobile: activateApp', {appId: 'org.medicmobile.webapp.mobile'});
-        await browser.pause(5000);
     }
 
     async syncData () {
         console.log(`TIME IS::: ${await driver.getDeviceTime()}`);
         //change date here - WIP
         await browser.pause(5000);
-        await this.tabDropdown.click();
+        await this.clickDisplayedElem(this.tabDropdown);
         await this.clickDisplayedElem(this.menuItemSyncNow);
         await browser.pause(1000);
         await this.tabDropdown.click();

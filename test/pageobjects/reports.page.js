@@ -7,6 +7,10 @@ class ReportsPage extends Page {
         return $('(//*[@text="icon-healthcare"])[1]');
     }
 
+    get itemFirstReport () {
+        return $('((//android.widget.ListView//android.view.View)[1]//android.view.View)[1]');
+    }
+
     get iconBack () {
         return $('//*[@text="Back"]');
     }
@@ -15,7 +19,14 @@ class ReportsPage extends Page {
         await super.clickDisplayedElem(super.tabReports);
         await super.clickDisplayedElem(this.iconHealthCare);
         await this.iconBack.click();
-        await browser.pause(5000);
+        (await this.iconHealthCare).waitForDisplayed();
+    }
+
+    async viewAReportNE () {
+        await super.clickDisplayedElem(super.tabReports);
+        await super.clickDisplayedElem(this.itemFirstReport);
+        await this.iconBack.click();
+        (await this.itemFirstReport).waitForDisplayed();
     }
 }
 

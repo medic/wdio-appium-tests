@@ -15,7 +15,6 @@ class MessagesPage extends Page {
         await super.clickDisplayedElem(super.tabMessages);
         await super.clickDisplayedElem(this.listMessages);
         await this.iconBack.click();
-        await browser.pause(5000);
     }
 }
 

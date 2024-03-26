@@ -61,13 +61,14 @@ exports.config = {
 
     capabilities: [{
         'appium:platformName': 'Android',
-        'appium:platformVersion': process.env.SAFARICOM_VERSION,
-        'appium:deviceName': process.env.SAFARICOM_NAME,
+        'appium:platformVersion': process.env.SAMSUNG_VERSION,
+        'appium:deviceName': process.env.SAMSUNG_NAME,
         'appium:autoGrantPermissions': true,
         'appium:allowInvisibleElements': true,
+        'appium:disableIdLocatorAutocompletion': true,
         'appium:appPackage': 'org.medicmobile.webapp.mobile',
         'appium:appActivity': 'org.medicmobile.webapp.mobile.StartupActivity',
-        'appium:app': 'apk/CHTAndroid.apk',
+        // 'appium:app': 'apk/CHTAndroid.apk',
         'appium:automationName': 'UiAutomator2'
     }],
 
